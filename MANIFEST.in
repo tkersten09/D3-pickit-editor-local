@@ -2,4 +2,4 @@ include setup.py
 include pavement.py
 include paver-minilib.zip
 include bin/pickit-cl.bat
-recursive-include pickit-cl/ *
+recursive-include pickit_cl *
