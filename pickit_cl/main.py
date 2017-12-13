@@ -15,16 +15,20 @@ Upload all videos in given folder to Youtube from the command-line which.
 """
 import os
 import sys
+
+#Is needed so that the thz module can be found by autodoc
+sys.path.insert(0, os.path.abspath('../../'))
+
 from pathlib import Path
 import optparse
 #from urllib.request import urlopen
 #from urllib.request import URLError
 try:
     import urllib2
-    import pickit_cl.lib.pickit_cl_ori_py2 as pickit_cl_ori
+    from .lib import pickit_cl_ori_py2 as pickit_cl_ori
 except ImportError:
     import urllib.request as urllib2
-    import pickit_cl.lib.pickit_cl_ori_py3 as pickit_cl_ori
+    from .lib import pickit_cl_ori_py3 as pickit_cl_ori
 
 import time
 
