@@ -6,7 +6,7 @@ from pathlib import Path
 
 setup(
     name="pickit-cl",
-    packages=['pickit-cl/',],
+    packages=['pickit_cl/',],
     version="0.1.0",
     author="Thomas Kersten",
     author_email="tkersten09@gmail.com",
