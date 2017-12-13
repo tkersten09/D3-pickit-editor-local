@@ -17,7 +17,6 @@ import os
 import sys
 from pathlib import Path
 import optparse
-from youtube_upload import lib
 #from urllib.request import urlopen
 #from urllib.request import URLError
 try:
