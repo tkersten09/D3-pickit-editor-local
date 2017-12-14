@@ -48,7 +48,7 @@ Temporary Items
 dist/
 Importer/
 *.rar
-*.bat
+#*.bat
 scrap.py
 scrap - Copy.py
 build.html
