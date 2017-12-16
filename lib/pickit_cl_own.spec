@@ -4,9 +4,9 @@ block_cipher = None
 
 
 a = Analysis(['pickit_cl.py'],
-             pathex=['C:\\Users\\Thomas\\Documents\\GitHub\\pickit-cl\\pickit_cl'],
+             pathex=['C:\\Users\\Thomas\\Documents\\GitHub\\pickit-cl'],
              binaries=[],
-             datas=[],
+             datas=[('data', 'data'), ('output', 'output'),('build_numbers.txt', '.')],
              hiddenimports=[],
              hookspath=[],
              runtime_hooks=[],
