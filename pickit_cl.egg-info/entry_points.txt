@@ -1,0 +1,3 @@
+[console_scripts]
+pickit-cl = pickit_cl:run
+
