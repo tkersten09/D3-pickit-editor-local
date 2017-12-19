@@ -1,5 +1,4 @@
 import json
-import requests
 import os
 import sys
 try:
@@ -25,7 +24,7 @@ with open(r'data\itemlist.json', 'r') as f:
     itemList = json.load(f)
 
 with open(r'data\statlist2.json', 'r') as f1:
-    statList = {int(k):v for k,v in json.load(f1).items()} 
+    statList = {int(k):v for k,v in json.load(f1).items()}
 
 with open(r'data\typelist.json', 'r') as f2:
     typeList = json.load(f2)
@@ -49,7 +48,7 @@ def main(buildnumber, fourthree, buildtype):
     while i<=len(url):
         equalstring += '='
         i += 1
-        
+
     #print (equalstring)
     #print ('Loading build from {}'.format(url))
     #print (equalstring + '\n')
@@ -70,12 +69,12 @@ def main(buildnumber, fourthree, buildtype):
         for item in itemList:
             if item['name'].strip() == name:
                 return item['type']
-           
+
     def getItemSlot(slot):
         slotObj = {}
         itemArr = []
         statArr = []
-        
+
         ItemSlot_soup = soup.select('#item-{} li[data-item-id]'.format(slot))
         #print 'ItemSlot_soup: %s'%ItemSlot_soup
         for item in ItemSlot_soup:
@@ -84,20 +83,20 @@ def main(buildnumber, fourthree, buildtype):
             type = getItemInfos(name)
 
             #print ('NAME={} | TYPE={} | SLOT={}'.format(name,type,slot))
-            
+
             itemdetails = {
                 'name': name,
                 'type': type,
                 'importance': importance,
                 }
             itemArr.extend([itemdetails])
-        
+
         StatSlot_soup = soup.select('#item-{} .item-stat a'.format(slot))
         for stats in StatSlot_soup:
             stattitle = stats.get('title')
             stattitle_soup = BeautifulSoup(stattitle, 'html.parser')
             statArr.extend([stattitle_soup.get_text().rsplit(':',1)[0]])
-            
+
         slotObj['items'] = itemArr
         slotObj['stats'] = statArr
         return slotObj
@@ -125,15 +124,15 @@ def main(buildnumber, fourthree, buildtype):
     if soup.select('#kanai-weapon .db-title span'):
         resObj['kanai_weapon']   = soup.select('#kanai-weapon .db-title span')[0].get_text()
         #print ( 'Kanai Weapon Slot | NAME={}'.format(resObj['kanai_weapon']))
-        
-    if soup.select('#kanai-armor .db-title span'):    
+
+    if soup.select('#kanai-armor .db-title span'):
         resObj['kanai_armor']    = soup.select('#kanai-armor .db-title span')[0].get_text()
         #print ( 'Kanai Armor Slot | NAME={}'.format(resObj['kanai_armor']))
-        
-    if soup.select('#kanai-jewelry .db-title span'):    
+
+    if soup.select('#kanai-jewelry .db-title span'):
         resObj['kanai_jewelry']  = soup.select('#kanai-jewelry .db-title span')[0].get_text()
         #print ( 'Kanai Jewelry Slot | NAME={}'.format(resObj['kanai_jewelry']))
-        
+
     #print ( resObj)
     #print ( resObj['item_head'])
 
@@ -157,7 +156,7 @@ def main(buildnumber, fourthree, buildtype):
     def generateString(item):
         k=0
         string = ""
-        while k < len(item['items']):   
+        while k < len(item['items']):
             name = item['items'][k]['name']
             statCount = len(item['stats'])
             stats = item['stats']
@@ -179,7 +178,7 @@ def main(buildnumber, fourthree, buildtype):
               type =  pickitType
         global pickitList
         pickitList += type + ' = name=' + name + ' ' + '& can_cubed=1 & cubed=0\n'
-        
+
     def generateAtLeastString(statCount, stats):
       string = ''
       if not stats or statCount == '0':
@@ -194,7 +193,7 @@ def main(buildnumber, fourthree, buildtype):
           i -= 1
         else:
           i += 1
-      string += '& at_least[' 
+      string += '& at_least['
       if fourthree == '4':
         string += str(statCount) + ', '
       else:
@@ -209,8 +208,8 @@ def main(buildnumber, fourthree, buildtype):
         else:
           string += ']'
           j +=1
-          return string  
-        
+          return string
+
     pickitList = ';||||' + resObj['build_class'] + '-Build: ' + resObj['build_name'] + ' Link: ' + resObj['build_url'] + ' ||||\n'
 
     for entry in resObj:
@@ -227,7 +226,7 @@ def write_output(buildnumber='', buildtype='', pickitList=''):
         with open(r'data\essentials.txt', 'r') as essentials:
             with open('output/pickit_sc_70.ini', 'w') as a_file:
                 a_file.write(essentials.read())
-                a_file.write('\n')        
+                a_file.write('\n')
         with open('output/pickit_sc_70.ini', 'a') as a_file:
             pickitList += '\n'
             a_file.write(pickitList)
@@ -241,10 +240,9 @@ def write_output(buildnumber='', buildtype='', pickitList=''):
             pickitList += '\n'
             a_file.write(pickitList)
         print('INFO | save successful')
-  
+
 def run():
     sys.exit(main(*sys.argv[1:]))
-  
+
 if __name__ == '__main__':
     run()
-

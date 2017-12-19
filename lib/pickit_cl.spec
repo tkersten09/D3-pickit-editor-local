@@ -4,10 +4,10 @@ block_cipher = None
 
 
 a = Analysis(['..\\pickit_cl.py'],
-             pathex=['C:\\Users\\Thomas\\Documents\\GitHub\\pickit-cl\\lib'],
+             pathex=['lib\\'],
              binaries=[],
-             datas=[('..\\data', 'data'), ('..\\lib', 'lib'), ('..\\output', 'output'),('..\\build_numbers.txt', '.')],
-             hiddenimports=['pickit_cl_ori_py3'],
+             datas=[('..\\data', 'data'), ('..\\output', 'output'),('..\\build_numbers.txt', '.')],
+             hiddenimports=[],
              hookspath=[],
              runtime_hooks=[],
              excludes=[],
@@ -20,7 +20,7 @@ exe = EXE(pyz,
           a.scripts,
           exclude_binaries=True,
           name='pickit_cl',
-          debug=True,
+          debug=False,
           strip=False,
           upx=True,
           console=True )

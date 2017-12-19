@@ -5,23 +5,23 @@
 # Author: Arnau Sanchez <pyarnau@gmail.com>
 # Project: https://github.com/tokland/youtube-upload
 """
-Download Builds from http://www.diablofans.com/builds/BUILDNUMBER (like 57405)
-with the given Buildnumber.
+Download Builds from http://www.diablofans.com/builds/BUILDNUMBER \
+(like 57405) with the given Buildnumber. \
 And stores them into output/*.ini for TurboHUD.
     $ pickit-cl --use-number-file --fourthree=4 --buildtype="full"
 """
-import os
-import sys
+import inspect
 import optparse
-
-import urllib.request as urllib2
-import lib.pickit_cl_ori_py3 as pickit_cl_ori
-
+import os
 import re
+import sys
+import urllib.request as urllib2
+
+import lib.pickit_cl_ori_py3 as pickit_cl_ori
 
 abs_dir_path = os.path.dirname(os.path.realpath(__file__))
 sys.path.insert(0, abs_dir_path)
-# print(sys.path)
+# print(sys.path
 
 
 class OptionsError(Exception):
@@ -87,8 +87,8 @@ def parse_options_error(parser, options, args):
 
 
 def run_main(parser, options, args, output=sys.stdout):
-    """Run the main scripts from the parsed options/args.
-       It read in buildnumbers from args or from the build_numbers.txt file.
+    """Run the main scripts from the parsed options/args. \
+       It read in buildnumbers from args or from the build_numbers.txt file. \
        And checks if the Builds for them exists on the site."""
     parse_options_error(parser, options, args)
     # args = '53544'
@@ -96,6 +96,11 @@ def run_main(parser, options, args, output=sys.stdout):
     build_numbers = []
     if options.use_number_file:
         pattern = re.compile('([^#]*)(#)(.*)')
+        print(os.getcwd())
+        print(sys.path)
+        print(abs_dir_path)
+        print("stack[1]: {}".format(inspect.stack()[1]))
+        print("stack: {}".format(inspect.stack()))
         with open('{}'.format(options.number_file), 'r') as number_file:
             splited = str(number_file.read()).split('\n')
             # print('splited: {}'.format(splited))
