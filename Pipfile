@@ -1,0 +1,19 @@
+[[source]]
+
+url = "https://pypi.python.org/simple"
+verify_ssl = true
+name = "pypi"
+
+
+[packages]
+
+requests = "*"
+"pypiwin32" = "*"
+simplejson = "*"
+demjson = "*"
+zerorpc = "*"
+"bs4" = "*"
+
+
+[dev-packages]
+
