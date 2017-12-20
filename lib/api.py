@@ -9,6 +9,7 @@ import simplejson as json
 import zerorpc
 
 from gui_html import Builds as Builds
+from gui_html import print_s
 
 
 class Get_Build(object):
@@ -16,11 +17,11 @@ class Get_Build(object):
 
     def __init__(self):
         self.builds = Builds()
-        print('[python] Builds() __init__.')
+        print('[python] Builds().__init__().')
 
     def init(self):
         """based on the input text, return the int result"""
-        print('[python] Builds() init().')
+        print('[python] Builds().init().')
         try:
             return self.builds.get_as_data_uri('')
         except Exception as e:
@@ -28,6 +29,7 @@ class Get_Build(object):
 
     def export(self):
         """invoke export"""
+        print('[python] Builds().export().')
         try:
             return self.builds.export()
         except Exception as e:
@@ -35,8 +37,8 @@ class Get_Build(object):
 
     def change_class(self, class_name):
         """Return page of the new class"""
+        print('[python] Builds().class_name(): ' + class_name)
         try:
-            print(class_name)
             # new_selection = _jsonnet.evaluate_snippet(
             #     'snippet', new_selection_json)
             return self.builds.get_as_data_uri(class_name)
@@ -45,6 +47,8 @@ class Get_Build(object):
 
     def update(self, class_name, new_selection_json):
         """update selection for the given class"""
+        print('[python] Builds().update()')
+        print_s
         try:
             new_selection = json.loads(str(new_selection_json))
             print(new_selection)
