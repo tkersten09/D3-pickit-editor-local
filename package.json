@@ -1,26 +1,32 @@
 {
-  "name": "pretty-calculator",
+  "name": "pickit-cl",
   "version": "1.0.0",
-  "description": "A minimal Electron and Python - based calculator ",
+  "description": "A electron based UI for pickit-cl",
   "main": "main.js",
   "scripts": {
     "start": "electron .",
-    "test": "electron json.js"
+    "test": "electron --inspect ."
   },
-  "repository": "https://github.com/fyears/electron-python-example",
+  "repository": "https://github.com/tkersten09/pickit-cl",
   "keywords": [
     "Electron",
     "Python",
     "zerorpc",
-    "demo"
+    "pickit-cl",
+    "pickit"
   ],
   "author": "fyears",
   "license": "MIT",
   "dependencies": {
+    "electron": "^1.7.6",
+    "electron-less": "git+https://github.com/tkersten09/electron_less.git",
     "zerorpc": "git+https://github.com/fyears/zerorpc-node.git"
   },
   "devDependencies": {
-    "electron": "^1.7.6",
-    "electron-packager": "^9.0.1"
+    "electron-packager": "^9.0.1",
+    "eslint": "^4.14.0",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.8.0",
+    "get-installed-path": "^4.0.8"
   }
 }

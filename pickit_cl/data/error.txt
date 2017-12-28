@@ -1,0 +1,22 @@
+PS C:\Users\Thomas\Documents\GitHub\pickit-cl\pickit_cl> pickit-cl -f --number-file="build_numbers_export.txt" -4 3 -b b
+uild
+Traceback (most recent call last):
+  File "D:\Dateien\Programme\Anaconda\Scripts\pickit-cl-script.py", line 11, in <module>
+    load_entry_point('pickit-cl', 'console_scripts', 'pickit-cl')()
+  File "c:\users\thomas\documents\github\pickit-cl\pickit_cl\pickit_cl.py", line 199, in run
+    sys.exit(catch_exceptions(EXIT_CODES, main, sys.argv[1:]))
+  File "c:\users\thomas\documents\github\pickit-cl\pickit_cl\pickit_cl.py", line 52, in catch_exceptions
+    fun(*args, **kwargs)
+  File "c:\users\thomas\documents\github\pickit-cl\pickit_cl\pickit_cl.py", line 195, in main
+    run_main(parser, options, args)
+  File "c:\users\thomas\documents\github\pickit-cl\pickit_cl\pickit_cl.py", line 142, in run_main
+    run_pickit(build_numbers, options, args)
+  File "c:\users\thomas\documents\github\pickit-cl\pickit_cl\pickit_cl.py", line 66, in run_pickit
+    buildtype=options.buildtype)
+  File "c:\users\thomas\documents\github\pickit-cl\pickit_cl\lib\pickit_cl_ori_py3.py", line 123, in main
+    resObj['item_hands'] = getItemSlot('hands')
+  File "c:\users\thomas\documents\github\pickit-cl\pickit_cl\lib\pickit_cl_ori_py3.py", line 88, in getItemSlot
+    type = getItemInfos(name)
+  File "c:\users\thomas\documents\github\pickit-cl\pickit_cl\lib\pickit_cl_ori_py3.py", line 76, in getItemInfos
+    name + '" in itemList.')
+Exception: [getItemInfos] no match for ""Frostburn Gauntlets" in itemList.

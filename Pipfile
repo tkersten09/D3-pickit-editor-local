@@ -13,6 +13,7 @@ simplejson = "*"
 demjson = "*"
 zerorpc = "*"
 "bs4" = "*"
+pytest = "*"
 
 
 [dev-packages]
