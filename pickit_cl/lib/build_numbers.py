@@ -17,10 +17,13 @@ from pprint import pprint as print
 
 from bs4 import BeautifulSoup
 
+from youtube_upload.lib import retriable_exceptions
+
 try:
     import urllib2
 except ImportError:
     import urllib.request as urllib2
+    import urllib
 
 
 abs_dir_path = os.path.dirname(os.path.realpath(__file__))
@@ -31,19 +34,18 @@ os.chdir(abs_dir_path + "/../")
 
 # GLOBAL VARIABLES */
 
+retriable_exceptions_list = {
+    urllib.error.HTTPError,
+}
+
 FANS_BASEURL = 'http://www.diablofans.com/builds/'
 
 
 def get_page(url):
-    while True:
-        try:
-            url = page = urllib2.urlopen(url)
-            break
-        except urllib2.URLError:
-            print('Url not found check build number')
-        except Exception:
-            print('Exception')
-    return page
+    def func():
+        return urllib2.urlopen(url)
+
+    return retriable_exceptions(func, retriable_exceptions_list, 4)
 
 
 def print_s(*vars):
@@ -135,7 +137,7 @@ class Build_numbers(object):
             link_tag = soup.new_tag(
                 'a', href=r'file:///C:\Users\Thomas\Documents\GitHub\pickit-cl\gui\temp' + s + class_name_list[index] + ".html", onclick='navigateTo("' + class_name_list[index] + '")')
             link.wrap(link_tag)
-        print_s(link_soup)
+        # print_s(link_soup)
 
         self.builds_dict[class_name] = []
 
@@ -251,7 +253,7 @@ let className = '""" + class_name + """'
 
     def init_html_code(self, class_name, init=False):
         """Get the html_code of the page for given class."""
-        print_s(len(self.builds_dict[class_name]))
+
         if len(self.builds_dict[class_name]) is 0:
             self.load_class_page(class_name)
             self.init_class_page(class_name)

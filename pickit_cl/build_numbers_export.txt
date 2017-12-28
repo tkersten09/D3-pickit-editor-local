@@ -1,17 +1,7 @@
 # barbarian
-78333 # Rating: +72 Name: WhirlWind TXIII Beast Mode SpeedFarm GR75+
-77265 # Rating: +51 Name: 2.6.1 Volcano Barb TXIII Speedfarm Build!
-95516 # Rating: +47 Name: IK HAMMER of the ANCIENTS GR100+
-82021 # Rating: +33 Name: Barbarian Starter [Yellows] S12
-85723 # Rating: +28 Name: Bul-Kathos's WHIRLWIND V2.0 GR100+
-76269 # Rating: +18 Name: 2.6.1 SpeedQuake GR90+ SpeedFarm
-87419 # Rating: +13 Name: 2.6 GR90+ Raekor's IK Furious Charge Best DPS: Boulder Toss Guide [Video]
-95626 # Rating: +12 Name: Raekor's HAMMER of the ANCIENTS GR100+
-79501 # Rating: +11 Name: WHIRLWIND T13 "SPEED KING"
-81867 # Rating: +11 Name: Might of the Earth FIREQUAKE V2.0 GR100+
 # crusaider
 82244 # Rating: +88 Name: Thorns of the Invoker V2.0 GR100+
-85719 # Rating: +43 Name: Holy Hammerdin GR100+
+85719 # Rating: +44 Name: Holy Hammerdin GR100+
 86986 # Rating: +37 Name: HAMMERDIN - TIPS & TRICKS - Crusader GR Build- (S12) - 2.6.1 LIVE - Gaming with Baromir ( +VIDEO )
 82553 # Rating: +29 Name: Phalanx Bowmen T13 "PETSADER" Speed
 95085 # Rating: +28 Name: GR100+ Lazy Shotgun Crusader
@@ -19,59 +9,9 @@
 83521 # Rating: +17 Name: Roland's LIGHTNING SWEEPER GR100+
 95781 # Rating: +15 Name: JUDGE DREDD - T13 Speed Farm Build (+VIDEO)
 83867 # Rating: +10 Name: LoN Fire BLESSED SHIELD GR95+
-81862 # Rating: +10 Name: Akkhan Invoker MELEE GR95+
+95632 # Rating: +10 Name: Akkhan Condemn Version 2 (EW) - GR 100 Clear Updated Video Added :)
 # demon hunter
-95745 # Rating: +66 Name: [2.6.1] Fastest Multishot T13 400%+ Movespeed
-95742 # Rating: +53 Name: [2.6.1] Multishot Solo GR100+
-95746 # Rating: +23 Name: [2.6.1] Natalya RoV + FoK Solo 100+
-81405 # Rating: +23 Name: 2.6.1 UE Multishot Speed Build GR/T13
-88914 # Rating: +20 Name: UE Grenade Generator GR100+
-85157 # Rating: +13 Name: 2.6.1 UE Grenade Speed/Bounty
-94690 # Rating: +12 Name: 2.6.1 - 100GR+ M6 Multishot Marauder
-95896 # Rating: +11 Name: 2.6.1 Multishot Solo 95-100+
-96237 # Rating: +10 Name: 2.6.1 Lighting Shadow DH GR 108+ (Video)
-95398 # Rating: +8 Name: Multishot DH GR90 speed under 4 minutes
 # monk
-96442 # Rating: +148 Name: DatModz - GR 110+ Sunwuko WoL Monk
-87017 # Rating: +29 Name: INNA'S EP GR100+
-89399 # Rating: +29 Name: Video :TXIII FASTEST keyfarming build
-78167 # Rating: +21 Name: Monk Starter [Yellows] S12
-82911 # Rating: +20 Name: 2.6 GR95+ Uliana's Exploding Palm   [ Video]
-88465 # Rating: +11 Name: 2.6.1 U6 SSS Speed Build
-87176 # Rating: +6 Name: Sunwuko's Tempest Rush GR100+
-84297 # Rating: +5 Name: Uliana's ONE BLOW T13 Speedfarming
-72971 # Rating: +5 Name: Lightning tempest 2.6.1
-87805 # Rating: +5 Name: Sunwuko's Wave of Light "FIRE BELLS" GR100+
 # witch doctor
-82941 # Rating: +58 Name: Arachyr FIREBATS Solo/Group GR100/120+
-78684 # Rating: +46 Name: Zunimassa GARGS GR100+
-85786 # Rating: +37 Name: Arachyr T13 CHICKEN-on-STEROIDS
-89558 # Rating: +37 Name: Spirit Barrage LoN COLD BARBER GR100+
-84110 # Rating: +36 Name: Jade Harvester GR100+ (in-depth Guide)
-95763 # Rating: +30 Name: Arachyr Fire-Bats Solo Meta 110+
-95804 # Rating: +27 Name: Hell-Tooth Gargantuan GR Solo 110+
-81476 # Rating: +26 Name: 2.6.1 Helltooth Speed Build
-95762 # Rating: +21 Name: Jade Harvester! BOOM! GR110+
-95805 # Rating: +20 Name: ZUNI GOD! GR Solo 110+
 # wizard
-85762 # Rating: +88 Name: Tal Rasha MANALD HEAL GR90+ (NO Archon)
-95151 # Rating: +74 Name: [2.6.1] (GR112+) FB Meteor Etched Ignite
-67872 # Rating: +70 Name: [2.6.1] Explosive Blast Build Collection T13 Rifts/ Breath farm/ 75+
-81351 # Rating: +40 Name: 2.6.1 Wiz Explosive Blast Build T13
-70020 # Rating: +39 Name: [2.4] Wizard Firebird Beginner / 60+ / Easy to play, noob-proof
-83520 # Rating: +36 Name: Firebird ARCHON GR100+
-95583 # Rating: +33 Name: [2.6.1] (GR80-95+) Tal Channel Meteor Speed
-96279 # Rating: +22 Name: Firebird GR build Season 12
-81811 # Rating: +20 Name: Firebird EXPLOSIVE BLAST "DEMOMAN" GR100+
-94799 # Rating: +16 Name: [2.6.1] (GR108+) Tal Frozen Orb - Karini + OID
 # necromancer
-90975 # Rating: +225 Name: Rathma God GR 100+ Solo S11
-91330 # Rating: +192 Name: CorpseMancer TXIII GR75+ Speedfarm
-91826 # Rating: +104 Name: BloodMage TXIII/GR70+ SpeedFarm
-93665 # Rating: +83 Name: Rathma God Eater Of Souls GR 100+
-92573 # Rating: +72 Name: Blood Nova TXIII/GR70+ SpeedFarm Build
-92482 # Rating: +70 Name: One Shot Spear TXIII/GR75+ Pestilence Build
-94596 # Rating: +62 Name: 2.6.1 Blight Spear SpeedFarm GR85+
-91927 # Rating: +50 Name: 2.6.1 Speed-Rath
-91434 # Rating: +47 Name: Rathma's Unholy Army GR100+ (Pets are Great again!)
-94594 # Rating: +36 Name: Razor Teeth SpeedFarm Build GR70+

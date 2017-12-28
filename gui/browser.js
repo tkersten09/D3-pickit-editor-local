@@ -188,7 +188,7 @@ onload = function onload() {
         Console.error(`echo: ${error}`);
       } else {
         Console.log(`[browser.js] invoke export_build_numbers: ${res}`);
-        showModal('modal');
+        showModal('modal_build_numbers');
       }
     });
   };

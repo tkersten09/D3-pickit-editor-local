@@ -14,18 +14,24 @@ Use it like this:
 or
     $ pickit-cl -f --number-file="build_numbers_export.txt" -4 3 -b build
 """
-import inspect
 import optparse
 import os
 import re
 import sys
+import urllib
 import urllib.request as urllib2
 
 import lib.pickit_cl_ori_py3 as pickit_cl_ori
+from lib.build_numbers import print_s
+from youtube_upload.lib import catch_exceptions, retriable_exceptions
 
 abs_dir_path = os.path.dirname(os.path.realpath(__file__))
 sys.path.insert(0, abs_dir_path)
 # print(sys.path)
+
+retriable_exceptions_list = {
+    urllib.error.HTTPError,
+}
 
 
 class OptionsError(Exception):
@@ -38,22 +44,14 @@ EXIT_CODES = {
 }
 
 
-def debug(obj, fd=sys.stderr):
-    """Write obj to standard error."""
-    print(obj, file=fd)
-
-
-def catch_exceptions(exit_codes, fun, *args, **kwargs):
-    """
-    Catch exceptions on fun(*args, **kwargs) and return the exit code specified
-    in the exit_codes dictionary. Return 0 if no exception is raised.
-    """
-    try:
-        fun(*args, **kwargs)
-        return 0
-    except tuple(exit_codes.keys()) as exc:
-        debug("[{0}] {1}".format(exc.__class__.__name__, exc))
-        return exit_codes[exc.__class__]
+def delete_empty_elements(old_list):
+    count = 0
+    for element in old_list:
+        if element == '':
+            count += 1
+    for i in range(count):
+        old_list.remove('')
+    return old_list
 
 
 def run_pickit(build_numbers, options, args):
@@ -120,24 +118,20 @@ def run_main(parser, options, args, output=sys.stdout):
         for string in args:
             build_numbers.append(string.strip())
 
-    # print(build_numbers)
-    for index, buildnumber in enumerate(build_numbers):
-        try:
-            url = 'http://www.diablofans.com/builds/{}'.format(buildnumber)
-            urllib2.urlopen(url)
-        except urllib2.URLError:
-            raise('Url not found check build number {}'.format(buildnumber))
-        except Exception:
-            raise('Exception: {}'.format(Exception))
+    # removes empty elements
+    build_numbers = delete_empty_elements(build_numbers)
 
-        # removes empty elements
-        for index, string in enumerate(build_numbers):
-            if len(string) is 0:
-                build_numbers.remove('')
-
+    # raise exception if no buildnumbers were given
     if len(build_numbers) is 0:
         raise OptionsError("No existing Buildnumbers given.")
-    # print('build_numbers: {}'.format(build_numbers))
+
+    # print_s(build_numbers)
+    for buildnumber in build_numbers:
+
+        url = 'http://www.diablofans.com/builds/{}'.format(buildnumber)
+
+        def func(): return urllib2.urlopen(url)
+        retriable_exceptions(func, retriable_exceptions_list, 4)
 
     run_pickit(build_numbers, options, args)
 

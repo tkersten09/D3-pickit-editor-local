@@ -2,13 +2,17 @@ import json
 import os
 import sys
 from collections import OrderedDict
+from pprint import pprint as print
 
 from bs4 import BeautifulSoup
+
+from youtube_upload.lib import retriable_exceptions
 
 try:
     import urllib2
 except ImportError:
     import urllib.request as urllib2
+    import urllib
 
 
 abs_dir_path = os.path.dirname(os.path.realpath(__file__))
@@ -21,6 +25,10 @@ os.chdir(abs_dir_path + "/../")
 
 synonyme_item_names = {
     "Frostburn Gauntlets": "Frostburn"
+}
+
+retriable_exceptions_list = {
+    urllib.error.HTTPError,
 }
 
 
@@ -48,7 +56,6 @@ with open(r'data\typelist.json', 'r') as f2:
     typeList = json.load(f2)
 
 
-@profile
 def main(buildnumber, fourthree, buildtype):
     global pickitList
     global soup
@@ -60,16 +67,13 @@ def main(buildnumber, fourthree, buildtype):
     buildtypeG = buildtype
 
     # FUNCTION DECLARATIONS */
-    url = ''
-    while True:
-        try:
-            url = 'http://www.diablofans.com/builds/{}'.format(buildnumber)
-            page = urllib2.urlopen(url)
-            break
-        except urllib2.URLError:
-            print('Url not found check build number')
-        except Exception:
-            print('Exception')
+
+    url = 'http://www.diablofans.com/builds/{}'.format(buildnumber)
+
+    def func():
+        return urllib2.urlopen(url)
+
+    page = retriable_exceptions(func, retriable_exceptions_list, 4)
 
     i = 0
     equalstring = '=================='
@@ -86,7 +90,7 @@ def main(buildnumber, fourthree, buildtype):
     soup = BeautifulSoup(page, 'html.parser')
 
     resObj = OrderedDict()
-    # print soup.find(attrs={'class':'build-title'})
+    # print(soup.find(attrs={'class': 'build-title'}))
     resObj['build_name'] = soup.find(attrs={'class': 'build-title'}).get_text()
     resObj['build_url'] = FANS_BASEURL + \
         soup.find(attrs={'class': 'd3build-bbcode-button'}
@@ -166,7 +170,6 @@ def getItemInfos(name, recursive=True):
                     name + '" in itemList.')
 
 
-@profile
 def getItemSlot(slot):
     global soup
     slotObj = {}
