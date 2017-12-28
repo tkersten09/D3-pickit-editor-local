@@ -58,3 +58,5 @@ output/
 build/
 __pychache__/**
 node_modules/**
+*.pyc
+temp/
