@@ -1,7 +1,6 @@
 # import py2exe
 from pprint import pprint as print
 
-import paver.setuputils
 from paver.easy import *
 from paver.setuputils import (find_package_data, setup, standard_exclude,
                               standard_exclude_directories)

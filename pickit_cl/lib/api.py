@@ -20,15 +20,17 @@ from build_numbers import print_s
 class get_build(object):
     """"""
     builds = ""
+    progress_client = ""
 
     def __init__(self):
         print('[python] get_build().__init__().')
 
     def init(self):
-        """based on the input text, return the int result"""
+        """based on the input text, return the
+ int result"""
         print('[python] Builds().init().')
         try:
-            self.builds = Builds()
+            self.builds=Builds()
             return "[gui_html.py] init successful."
         except Exception as e:
             return "[api.py: exception] init(): [{}] {} with arg: {}".format(type(e), str(Exception.with_traceback(e)), [])
@@ -68,7 +70,7 @@ class get_build(object):
         """update selection for the given class"""
         print('[python] Builds().update()')
         try:
-            new_selection = json.loads(str(new_selection_json))
+            new_selection=json.loads(str(new_selection_json))
             print(new_selection)
             # new_selection = _jsonnet.evaluate_snippet(
             #     'snippet', new_selection_json)
@@ -86,17 +88,17 @@ class get_build(object):
 
 
 def parse_port():
-    port = 4242
+    port=4242
     try:
-        port = int(sys.argv[1])
+        port=int(sys.argv[1])
     except Exception as e:
         pass
     return '{}'.format(port)
 
 
 def main():
-    addr = 'tcp://127.0.0.1:' + parse_port()
-    s = zerorpc.Server(get_build())
+    addr='tcp://127.0.0.1:' + parse_port()
+    s=zerorpc.Server(get_build())
     s.bind(addr)
     print('start running on {}'.format(addr))
     s.run()

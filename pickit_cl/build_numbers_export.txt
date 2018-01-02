@@ -8,8 +8,8 @@
 94614 # Rating: +19 Name: 2.6.1 Blessed Shield GR Build
 83521 # Rating: +17 Name: Roland's LIGHTNING SWEEPER GR100+
 95781 # Rating: +15 Name: JUDGE DREDD - T13 Speed Farm Build (+VIDEO)
+81862 # Rating: +10 Name: Akkhan Invoker MELEE GR95+
 83867 # Rating: +10 Name: LoN Fire BLESSED SHIELD GR95+
-95632 # Rating: +10 Name: Akkhan Condemn Version 2 (EW) - GR 100 Clear Updated Video Added :)
 # demon hunter
 # monk
 # witch doctor

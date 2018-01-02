@@ -6,6 +6,53 @@ const fs = require('fs');
 const url = require('url');
 const { ipcRenderer } = require('electron');
 const zerorpc = require('zerorpc');
+const math = require('mathjs');
+const EventEmitter = require('events');
+
+const myEmitter = new EventEmitter();
+
+const server = new zerorpc.Server(
+  {
+    lastUpdate: 0,
+    progressBar: Object(),
+    maxValue: 100,
+    addProgressBar: function(maxValue, reply) {
+      this.maxValue = maxValue;
+      myEmitter.emit('new-progressbar', maxValue);
+      reply(null, '[From browers.js] ProgressBar created.');
+    },
+
+    updateProgressBar: function(n, reply) {
+      const newUpdate = math.max(n, this.lastUpdate);
+      this.progressBar.value = newUpdate;
+      this.lastUpdate = newUpdate;
+      console.log(`[browser.js: updateProgressBar] ${newUpdate}/${this.maxValue}`);
+      reply(null, `[From browers.js] ProgressBar updated to ${newUpdate}.`);
+    },
+  },
+  60000,
+);
+console.log(server);
+
+server.bind('tcp://127.0.0.1:4243');
+
+// const el = eless({
+//   paths: ['./gui/modal/city-lights-ui-atom/', 'gui/modal/city-lights-ui-atom/'],
+//   // options.source is required
+//   source: 'gui/modal/city-lights-ui-atom/index.less',
+//   // options.id is optional.
+//   // options.id defaults to hasha(source)
+//   id: 'myStyles'
+//   // options.variables is optional
+//   // options.variables gets turned into less variables
+//   // that get prefixed to the options.source file text
+//   // variables: {
+//   // }
+// }).then(() => {
+//   console.log('Styles appended to head element');
+//   console.log(el);
+//   console.log(document);
+// });
 
 function doLayout() {
   const webview = document.querySelector('webview');
@@ -65,6 +112,7 @@ const showModal = (fileName) => {
       browserWindow.show();
     }, 500);
   });
+  return browserWindow;
 };
 
 window.onresize = doLayout;
@@ -113,7 +161,7 @@ onload = function onload() {
     } else {
       Console.log('[browser.js] init');
       const fn = url.format({
-        pathname: path.join(__dirname, 'init.html'),
+        pathname: path.join(__dirname, 'temp', 'init.html'),
         protocol: 'file:',
         slashes: true,
       });
@@ -199,7 +247,8 @@ onload = function onload() {
         Console.error(`echo: ${error}`);
       } else {
         Console.log(`[browser.js] invoke export_pickit_config: ${res}`);
-        showModal('modal_pickit');
+        const browserWindow = showModal('modal_pickit');
+
       }
     });
   };

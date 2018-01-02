@@ -19,14 +19,21 @@
   "license": "MIT",
   "dependencies": {
     "electron": "^1.7.6",
+    "electron-is-dev": "^0.3.0",
     "electron-less": "git+https://github.com/tkersten09/electron_less.git",
+    "mathjs": "^3.18.1",
     "zerorpc": "git+https://github.com/fyears/zerorpc-node.git"
   },
   "devDependencies": {
+    "devtron": "^1.4.0",
+    "electron-debug": "^1.4.0",
     "electron-packager": "^9.0.1",
+    "elemon": "^5.0.3",
     "eslint": "^4.14.0",
     "eslint-config-airbnb-base": "^12.1.0",
     "eslint-plugin-import": "^2.8.0",
-    "get-installed-path": "^4.0.8"
+    "get-installed-path": "^4.0.8",
+    "less": "^2.7.3",
+    "progress-js": "^0.2.1"
   }
 }

@@ -1,5 +1,13 @@
 const { app, BrowserWindow, ipcMain } = require('electron');
+const url = require('url');
 const path = require('path');
+const isDev = require('electron-is-dev');
+const childProcess = require('child_process');
+const ProgressBar = require('electron-progressbar');
+
+if (isDev) {
+  require('electron-debug')({ showDevTools: true });
+}
 
 console.log('main.js is here');
 /** ***********************************************************
@@ -33,7 +41,7 @@ const getScriptPath = () => {
   // if (process.platform === 'win32') {
   //   return path.join(__dirname, PY_FOLDER, PY_MODULE + '.exe')
   // }
-  p = path.join(__dirname, PY_FOLDER, 'lib', `${PY_MODULE}.py`);
+  const p = path.join(__dirname, PY_FOLDER, 'lib', `${PY_MODULE}.py`);
   console.log(`script path: ${p}`);
   return p;
 };
@@ -49,10 +57,10 @@ const createPyProc = () => {
 
   if (guessPackaged()) {
     console.log(`exec script: ${script}`);
-    pyProc = require('child_process').execFile(script, [port]);
+    pyProc = childProcess.execFile(script, [port]);
   } else {
     console.log(`run script: ${script}`);
-    pyProc = require('child_process').spawn('python', [script, port]);
+    pyProc = childProcess.spawn('python', [script, port]);
   }
 
   if (pyProc != null) {
@@ -85,13 +93,12 @@ const createWindow = () => {
       nativeWindowOpen: true,
     },
   });
-  mainWindow.loadURL(require('url').format({
+  mainWindow.loadURL(url.format({
     pathname: path.join(__dirname, 'gui', 'browser.html'),
     protocol: 'file:',
     slashes: true,
   }));
-  mainWindow.webContents.openDevTools();
-  console.error('Window created');
+
   mainWindow.on('closed', () => {
     mainWindow = null;
   });
@@ -101,7 +108,14 @@ const addModalCreateEvent = () => {
   // Add event that creates the modal window
   mainWindow.webContents.on(
     'new-window',
-    (event, url, frameName, disposition, options, additionalFeatures) => {
+    (
+      event,
+      urlNewWindow,
+      frameName,
+      disposition,
+      options,
+      additionalFeatures,
+    ) => {
       if (frameName === 'modal') {
         event.preventDefault();
         Object.assign(options, {
@@ -122,6 +136,40 @@ const addModalCreateEvent = () => {
   );
 };
 
+const addProgressBarEvent = () => {
+  mainWindow.webContents.on('new-progressbar', (event, maxValue) => {
+    console.log('[main.js] new-progrssbar event')
+    // Add event that creates the modal window
+    const progressBar = new ProgressBar({
+      closeOnComplete: false,
+      indeterminate: false,
+      text: 'Fetching Builds...',
+      maxValue,
+      browserWindow: {
+        parent: mainWindow,
+      },
+    });
+
+    progressBar
+      .on('progress', (value) => {
+        progressBar.detail = `${value} of ${
+          progressBar.getOptions().maxValue
+        } Builds.`;
+      })
+      .on('completed', (value) => {
+        clearInterval(interval);
+        progressBar.detail = 'Completed. Exiting...';
+
+        setTimeout(() => {
+          progressBar.close();
+        }, 1500);
+      })
+      .on('aborted', (value) => {
+        console.info(`aborted on Build ${value}/${progressBar.getOptions().maxValue}`);
+      });
+  });
+};
+
 app.on('ready', () => {
   ipcMain.on('closeModal', () => {
     if (modal) {
@@ -130,6 +178,17 @@ app.on('ready', () => {
   });
   createWindow();
   addModalCreateEvent();
+  if (isDev) {
+    const elemon = require('elemon'); // require elemon if electron is in dev
+    elemon({
+      app,
+      mainFile: 'main.js',
+      bws: [
+        { bw: mainWindow, res: ['browser.html', 'browser.js', 'browser.css'] },
+        { bw: modal, res: [] },
+      ],
+    });
+  }
 });
 
 app.on('window-all-closed', () => {

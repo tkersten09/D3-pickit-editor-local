@@ -21,6 +21,8 @@ import sys
 import urllib
 import urllib.request as urllib2
 
+import zerorpc
+
 import lib.pickit_cl_ori_py3 as pickit_cl_ori
 from lib.build_numbers import print_s
 from youtube_upload.lib import catch_exceptions, retriable_exceptions
@@ -43,6 +45,9 @@ EXIT_CODES = {
     NotImplementedError: 5,
 }
 
+progress_client = zerorpc.Client()
+progress_client.connect("tcp://127.0.0.1:4243")
+
 
 def delete_empty_elements(old_list):
     count = 0
@@ -56,12 +61,16 @@ def delete_empty_elements(old_list):
 
 def run_pickit(build_numbers, options, args):
     """Parse all files in file_list by using tokland / youtube - upload script."""
+    print(progress_client.addProgressBar(len(build_numbers)))
     pickitList_list = []
+    i = 0
     for buildnumber in build_numbers:
         pick = pickit_cl_ori.main(
             buildnumber=buildnumber,
             fourthree=options.fourthree,
             buildtype=options.buildtype)
+        i += 1
+        print(progress_client.updateProgressBar(i))
         pickitList_list.append(pick)
     if options.onefile:
         builds_string = "\n".join(pickitList_list)
